@@ -1,0 +1,17 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+\<[^>]+\>    printf("%s\n", yytext);
+.|\n         ; // Ignore all other characters
+%%
+
+int yywrap() {
+    return 1;
+}
+
+int main() {
+    yylex();
+    return 0;
+}
